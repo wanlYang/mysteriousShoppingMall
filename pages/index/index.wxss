@@ -1,11 +1,26 @@
 .in_news{
   width:95%;
   height:80rpx;
-  background-color:white;
+  background-color:#99ccff;
   margin: 0 auto;
   margin-bottom:15rpx;
-  margin-top:10rpx;
+  margin-top:15rpx;
   position: relative;
+  border-radius: 10px;
+
+}
+.product_img{
+  border-radius: 10px;
+}
+.product_box_in{
+  width: 46%;
+  margin-bottom:10px;
+  border-radius: 10px;
+  
+  display: inline-block;
+  justify-content: center;
+  align-self: flex-start;
+
 }
 
 .in_img{
@@ -142,6 +157,7 @@ page {
   text-align: center;
 }
 .out scroll-view{
+  background:#33a3dc ;
   height: 100%;
   overflow-y: scroll;
 }
@@ -245,6 +261,7 @@ swiper {
   overflow: hidden;
 }
 .twos_cont{
+  background: #33a3dc;
   margin: 0 auto;
   flex-direction:row;
   justify-content :space-around;
@@ -288,9 +305,9 @@ swiper {
   background:#fff;
 }
 .cont .pr {
-  margin-bottom:10px;
+  border-radius: 10px;
+
   background:#fff;
-  width:46%;
   font-size:13px;
 }
 .cont_image {
@@ -299,6 +316,7 @@ swiper {
 }
 
 .cont .title {
+
   font-size: 28rpx;
   color: #333;
   line-height: 20px;
@@ -698,6 +716,7 @@ button{
 }
 
 .swiper_container{
+  color: #fff;
   height: 100%;
   font-size: 14px;
   line-height: 1.2em;

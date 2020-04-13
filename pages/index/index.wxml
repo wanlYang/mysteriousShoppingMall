@@ -68,14 +68,17 @@
           <view class="cont">   
               <view class="twos_cont" wx:if="{{item.products.length !== 0}}">
                 <block wx:for="{{item.products}}" wx:for-item="product" wx:key="id">
-                  <navigator class="pr" url="../product/detail?productId={{product.id}}" hover-class="changestyle">
-                    <image class="photo"  mode="aspectFill"  src="{{product.img}}"></image>
+                <view class="product_box_in" >
+                 <navigator class="pr" url="../product/detail?productId={{product.id}}" hover-class="changestyle">
+                    <image class="photo product_img" mode="aspectFill"  src="{{product.img}}"></image>
                     <view class="title">{{product.mainTitle}}</view>
                     <view style="display:flex;line-height:50rpx;color:#999">
                       <view class="gmxx" style="  color: red;">¥ {{product.price}}</view>
                       <view class="ku" style="width:70%">销量：{{product.buyCount}}</view>
                     </view> 
                   </navigator>
+                </view>
+                 
                 </block>
               </view>
               <view wx:else class="kdd_box">
