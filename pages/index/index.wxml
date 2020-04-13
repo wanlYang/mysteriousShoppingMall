@@ -1,0 +1,126 @@
+<view class="page">
+  <!-- 加载页面开始 -->
+  <view class="body" wx:if="{{remind}}">
+    <view class='zong'>
+      <view class="spinner">
+        <view class="spinner-container container1">
+          <view class="circle1"></view>
+          <view class="circle2"></view>
+          <view class="circle3"></view>
+          <view class="circle4"></view>
+        </view>
+        <view class="spinner-container container2">
+          <view class="circle1"></view>
+          <view class="circle2"></view>
+          <view class="circle3"></view>
+          <view class="circle4"></view>
+        </view>
+        <view class="spinner-container container3">
+          <view class="circle1"></view>
+          <view class="circle2"></view>
+          <view class="circle3"></view>
+          <view class="circle4"></view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 加载页面结束 -->
+  <block wx:else>
+    <!-- 导航栏 -->
+    <view class='tab'>
+      <scroll-view scroll-x="true" class="tab-h" scroll-left="{{scrollLeft}}">
+        <view class='tablist'>
+          <view wx:for="{{allList}}" wx:key="{{item.id}}" scroll-x class='item {{current==index?"select":""}}' data-pos='{{index}}' data-tabid='{{item.id}}' bindtap='tabItemClick'>
+            <text class='tab-text'>{{item.title}}</text>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+    <!-- 内容区域 -->
+    <swiper class='out' current='{{current}}' autoplay="{{false}}" bindchange="contentChange">
+      <swiper-item wx:for="{{allList}}" wx:for-item="item" wx:key="{{item.id}}">
+        <scroll-view scroll-y="true" bindscrolltolower="obm">
+          <!-- /首页轮播图/ -->
+          <swiper class="swiper-box" style="height:{{height}}px;" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" wx:if="{{item.id == 0 && banner.length >0}}">
+            <block wx:for="{{banner}}" wx:key="{{item.id}}">
+              <navigator url='{{item.url}}'>
+                <swiper-item>
+                  <image src="{{item.image}}" bindload='setContainerHeight' id="{{item.id}}" mode="widthFix" class="slide-image" width="100%" />
+                </swiper-item>
+              </navigator>
+            </block>
+          </swiper>
+          <!-- /首页轮播图结束/ -->
+
+          <!--滚动公告条开始 -->
+          <view class='in_news' wx:if="{{item.id==0 && inforList.length > 0}}">
+            <image src='/images/lb.png' class='in_img'></image>
+            <swiper class="swiper_container" vertical="true" autoplay="true" circular="true" interval="2000">
+              <block wx:for="{{inforList}}"wx:key="key">
+                  <swiper-item>
+                    <view class="swiper_item">{{item.title}}</view>
+                  </swiper-item>
+              </block>
+            </swiper>
+          </view>
+          <!-- 滚动公告条结束 -->
+          <!-- 商品信息 -->
+          <view class="cont">   
+              <view class="twos_cont" wx:if="{{item.products.length !== 0}}">
+                <block wx:for="{{item.products}}" wx:for-item="product" wx:key="id">
+                  <navigator class="pr" url="../product/detail?productId={{product.id}}" hover-class="changestyle">
+                    <image class="photo"  mode="aspectFill"  src="{{product.img}}"></image>
+                    <view class="title">{{product.mainTitle}}</view>
+                    <view style="display:flex;line-height:50rpx;color:#999">
+                      <view class="gmxx" style="  color: red;">¥ {{product.price}}</view>
+                      <view class="ku" style="width:70%">销量：{{product.buyCount}}</view>
+                    </view> 
+                  </navigator>
+                </block>
+              </view>
+              <view wx:else class="kdd_box">
+                <image class="kdd" src="/images/kdd.png" mode="widthFix"></image>
+              </view>
+          </view>
+          <view style="display: flex;" wx:if="{{loading}}">
+            <view class="spinner" style='margin:20px auto;'>
+              <view class="spinner-container container1">
+                <view class="circle1"></view>
+                <view class="circle2"></view>
+                <view class="circle3"></view>
+                <view class="circle4"></view>
+              </view>
+              <view class="spinner-container container2">
+                <view class="circle1"></view>
+                <view class="circle2"></view>
+                <view class="circle3"></view>
+                <view class="circle4"></view>
+              </view>
+              <view class="spinner-container container3">
+                <view class="circle1"></view>
+                <view class="circle2"></view>
+                <view class="circle3"></view>
+                <view class="circle4"></view>
+              </view>
+            </view>
+          </view>
+
+          <view wx:if="{{item.twodata == ''}}" class='tishi'>
+            <view>
+              <image class='scimg' style="margin-top: 25%;" src='/images/search_no.png'></image>
+            </view>
+            <view style='font-size:13px;color:#666;'>没有更多数据了</view>
+          </view>
+        </scroll-view>
+      </swiper-item>
+    </swiper>
+
+  </block>
+</view>
+<!--模态弹窗-->
+<view class="mask" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+<view class="modalDlg" wx:if="{{showModal && sign_status == 1}}">
+  <image src="{{sign_image}}" bindtap="navigate_sign" mode="aspectFit" style="width:700rpx;" />
+  <icon type="cancel" size="35" color="orange" catchtap="go" class="close" />
+</view>
+<pop id="pop"></pop>

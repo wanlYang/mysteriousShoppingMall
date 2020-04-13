@@ -1,0 +1,63 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/search/search",
+    "pages/user/user",
+    "pages/user/score",
+    "pages/user/wallet",
+    "pages/user/recharge",
+    "pages/listdetail/listdetail",
+    "pages/product/detail",
+    "pages/envelope/envelope",
+    "pages/user/withdrawals",
+    "pages/address/index",
+    "pages/address/address",
+    "pages/address/upaddress/upaddress",
+    "pages/cart/cart",
+    "pages/order/pay",
+    "pages/order/detail",
+    "pages/order/order",
+    "pages/collection/collection",
+    "pages/comment/comment",
+    "pages/user/transfer",
+    "pages/user/transfer1",
+    "pages/login/login",
+    "pages/bangding/bangding",
+    "pages/logins/logins.wx",
+    "pages/logins/logins"
+  ],
+  
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTitleText": "玄煞古风",
+    "navigationBarTextStyle": "black",
+    "navigationStyle":"default",
+    "enablePullDownRefresh": true,
+    "backgroundColor": "#ffffff"
+  },
+  "tabBar": {
+    "color": "#666666",
+    "selectedColor": "#FF6347",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "images/icons/home.png",
+        "selectedIconPath": "images/icons/homeopen.png",
+        "text": "首页"
+      },
+
+      {
+        "pagePath": "pages/search/search",
+        "iconPath": "images/icons/seach.png",
+        "selectedIconPath": "images/icons/seachopen.png",
+        "text": "搜索"
+      }
+      
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+  
+}
