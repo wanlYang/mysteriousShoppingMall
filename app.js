@@ -22,6 +22,23 @@ App({
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs);
     this.request = request;
+    this.globalData.logoimg = this.d.ceshiUrl + "/static/images/logo.png"
+    this.globalData.title = "玄煞古风"
+    this.globalData.bgcolor = "#33a3dc";
+    let menuButtonObject = wx.getMenuButtonBoundingClientRect();
+    wx.getSystemInfo({
+      success: res => {
+        let statusBarHeight = res.statusBarHeight,
+          navTop = menuButtonObject.top + 3,//胶囊按钮与顶部的距离
+          navHeight = statusBarHeight + menuButtonObject.height + (menuButtonObject.top - statusBarHeight)*2;//导航高度
+        this.globalData.navHeight = navHeight;
+        this.globalData.navTop = navTop;
+        this.globalData.windowHeight = res.windowHeight;
+      },
+      fail(err) {
+        console.log(err);
+      }
+    })
 
   },
   //控制授权登入
@@ -155,7 +172,7 @@ App({
     } 
   },
   globalData: {
-
+   
     userInfo: {},
     userlogin: wx.getStorageSync('userlogin'),
   },

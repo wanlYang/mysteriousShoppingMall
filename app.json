@@ -32,7 +32,7 @@
     "navigationBarBackgroundColor": "#ffffff",
     "navigationBarTitleText": "玄煞古风",
     "navigationBarTextStyle": "black",
-    "navigationStyle":"default",
+    "navigationStyle":"custom",
     "enablePullDownRefresh": true,
     "backgroundColor": "#ffffff"
   },

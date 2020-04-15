@@ -157,7 +157,7 @@ page {
   text-align: center;
 }
 .out scroll-view{
-  background:#33a3dc ;
+  background:#Fff ;
   height: 100%;
   overflow-y: scroll;
 }
@@ -261,7 +261,7 @@ swiper {
   overflow: hidden;
 }
 .twos_cont{
-  background: #33a3dc;
+  background: #FFF;
   margin: 0 auto;
   flex-direction:row;
   justify-content :space-around;
@@ -306,8 +306,9 @@ swiper {
 }
 .cont .pr {
   border-radius: 10px;
+  width: 100%;
 
-  background:#fff;
+  background:#EEE9E9;
   font-size:13px;
 }
 .cont_image {
@@ -316,7 +317,7 @@ swiper {
 }
 
 .cont .title {
-
+  background: #EEE9E9;
   font-size: 28rpx;
   color: #333;
   line-height: 20px;

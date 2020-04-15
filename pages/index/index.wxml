@@ -1,4 +1,5 @@
 <view class="page">
+  <navbar page-name="{{mch_name}}"></navbar>
   <!-- 加载页面开始 -->
   <view class="body" wx:if="{{remind}}">
     <view class='zong'>
@@ -25,6 +26,7 @@
     </view>
   </view>
   <!-- 加载页面结束 -->
+
   <block wx:else>
     <!-- 导航栏 -->
     <view class='tab'>

@@ -80,6 +80,7 @@ Page({
     var page = that.data.page;
     var index = that.data.tabid;
     var current = that.data.current;
+    console.log(page+"."+index);
     wx.request({
       url: app.d.ceshiUrl + '&action=Index&m=get_more',
       method: 'post',
@@ -140,14 +141,11 @@ Page({
         success: function(res) {
           
           var bgcolor = "#33a3dc"; //产品显示
-          app.d.bgcolor = bgcolor;
-          var title = "玄煞古风";
+
           var banner_num = Object.keys(that.data.banner); // 轮播图
           var notice = [{url: "1", title: "玄煞古风"}];
         
-          app.globalData.logoimg = app.d.ceshiUrl + "/static/images/logo.png"
-          app.globalData.title = "玄煞古风"
-
+          
           var allList = res.data.data
           var indexTwoData = allList[0].products;
           that.setData({
@@ -157,19 +155,11 @@ Page({
           that.setData({
             inforList: notice,
             banner_num: banner_num,
-            bgcolor: bgcolor,
-            mch_name: title,
+
+            mch_name: app.globalData.title,
             logo: res.data.logo,
           });
 
-          wx.setNavigationBarColor({
-            frontColor: app.d.frontColor,
-            backgroundColor: app.d.bgcolor //页面标题为路由参数
-          });
-          wx.setNavigationBarTitle({
-            title: title,
-            success: function() {},
-          });
           that.setData({remind: ''});
   
         },
