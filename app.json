@@ -1,5 +1,4 @@
 {
-  "enablePullDownRefresh": true,
   "pages": [
     "pages/index/index",
     "pages/search/search",
@@ -9,7 +8,6 @@
     "pages/user/recharge",
     "pages/listdetail/listdetail",
     "pages/product/detail",
-    "pages/envelope/envelope",
     "pages/user/withdrawals",
     "pages/address/index",
     "pages/address/address",

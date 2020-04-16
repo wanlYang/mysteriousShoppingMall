@@ -289,6 +289,7 @@ Page({
     })
   },
   material: function(res) {
+   
     wx.getUserInfo({
       success: function(res) {
         var userInfo = res.userInfo;

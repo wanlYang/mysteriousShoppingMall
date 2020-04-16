@@ -90,89 +90,9 @@
     <view style='clear:both;'></view>
     <view class='qgx'></view>
 
-    <form bindsubmit="add_fromid" report-submit='true'>
-      <button class='gg_fl' style="font-size: 15px;height: 35px;padding: 0;width: 90%;margin: auto;background: #fff;line-height: 35px;" form-type="submit" type="default" data-type="" data-status="1">
-        <view style='float: left;font-size: 15px;line-height: 35px;color: #666;'>规格
-          <text wx:if="{{value}}" style='color:#666;padding-left:15px;'>{{value}}</text>
-          <text wx:else style='color:#666;padding-left:15px;'>选择 颜色分类</text>
-        </view>
-        <view style='float:right'>
-          <image src='../../images/x_right.png' style='float: right;line-height: 35px;'></image>
-        </view>
-        <view style='clear:both;'></view>
-      </button>
-    </form>
-
     <view class='qgx'></view>
     <!-- 悬浮客服窗口 -->
-    <view class='kffd'>
-      <view style='position: relative;height: 33px;'>
-        <contact-button type="default-light" session-from="productId_{{itemData.id}}" class="ke"></contact-button>
-        <view style='position: absolute;top: 0px;width: 50px;background:#ff6347;height: 30px;border-radius: 15px 0 0 15px;color: #fff;right:0;'>
-          <image class="icon_kf kf_img" src="/images/kefu1.png"></image>
-        </view>
-      </view>
-    </view>
   </view>
-  <!--弹窗-->
-  <view class="drawer_screen" catchtouchmove="preventTouchMove" bindtap="setModalStatus" data-status="0" wx:if="{{showModalStatus}}"></view>
-  <view animation="{{animationData}}" class="drawer_attr_box" catchtouchmove="preventTouchMove" wx:if="{{showModalStatus}}">
-    <view class="close_icon" bindtap="setModalStatus" data-status="0">×</view>
-    <view class="drawer_attr_content">
-      <view class="text_center">
-        <image class="drawer_image" src="{{itemData.photo_x}}"></image>
-      </view>
-      <view class="mingcheng">
-        <view wx:if="{{paytype == 'canjiapintuan'}}" style="font-size:38rpx;color:red">¥{{itemData.price11}}</view>
-        <view wx:else style="font-size:38rpx;color:red">¥ {{itemData.price_yh}}</view>
-        <view style="font-size:26rpx;color:#ccc">库存：{{itemData.num}}</view>
-      </view>
-      <view style='clear:both;'></view>
-      <view class="commodity_attr_list" catchtouchmove="preventTouchMove">
-        <!--每组属性-->
-        <scroll-view scroll-y="true" style="height:100%;">
-          <!-- 属性选择 -->
-          <view wx:for="{{attrList}}" wx:for-index="idx" wx:key="userInfoListId" class="outStyle">
-            <view class='outStyleText textStyle buttonPaddingStyle' style="padding-left:0">{{item.attrName}}</view>
-            <view class='typeStyle textStyle' style="margin-left:0;flex-wrap: wrap;">
-              <view wx:for="{{item.attr}}" data-item='{{item.attr[index]}}' data-index='{{index}}' data-idx='{{idx}}' wx:key="userInfoListId" bindtap="onChangeShowState" wx:for-item="items">
-                <view class="{{items.enable == true ?(items.select==true?'orange':'back') : 'bai'}} textStyle buttonPaddingStyle">
-                  {{items.attributeValue}}
-                </view>
-              </view>
-            </view>
-          </view>
-          <!-- 属性选择 -->
-
-          <view class="shu" wx:if="{{type1 != 1}}">
-            <text class="cun">购买数量</text>
-            <view class="dian">
-              <view class="stepper" catchtouchmove="preventTouchMove">
-                <!-- 减号 -->
-                <text class="{{minusStatuses[index]}}" data-alpha-beta="0" bindtap="changeNum">-</text>
-                <!-- 数值 -->
-                <view class="nownum">{{buynum}}</view>
-                <!-- 加号 -->
-                <text class="normal" data-alpha-beta="1" bindtap="changeNum">+</text>
-              </view>
-            </view>
-          </view>
-        </scroll-view>
-      </view>
-      <view wx:if="{{!xefl}}" class="footc" data-type="{{paytype}}" id="{{paytype}}" type="primary" bindtap="submit" style='background:#FF6347'> 确定 </view>
-      <!-- <block wx:else>
-        <view wx:if="{{type1 == 1}}">
-          <view class="xgfootc1" data-type="buynow" id="buynow" type="primary" bindtap="submit" style='background:#f7c747;'> 单独购买 </view>
-          <view class="xgfootc2" data-type="canjiapintuan" id="canjiapintuan" type="primary" bindtap="submit" style='background:#ec612a;'> 参加拼团¥{{itemData.price11}} </view>
-        </view> -->
-        <block wx:else>
-          <view class="xgfootc1" data-type="addcart" id="addcart" type="primary" bindtap="submit" style='background:#f7c747;'> 加入购物车 </view>
-          <view class="xgfootc2" data-type="buynow" id="buynow" type="primary" bindtap="submit" style='background:#ec612a;'> 立即购买 </view>
-        </block>
-      <!-- </block> -->
-    </view>
-  </view>
-  <!--弹框结尾  -->
 
   <!--图文详情头部-->
   <view>
@@ -290,15 +210,6 @@
           </view>
         </view>
         <!--获取formid  -->
-        <view class=" w40 fl_l" style='background:#f7c747;' bindtap="setModalStatus" data-status="1" data-type="buynow">单独买 ¥ {{itemData.price_yh}}</view>
-
-        <form bindsubmit="getUserformid" report-submit="true" data-status="1" data-type="canjiapintuan" style='width:40%;'>
-          <button type="primary" formType="submit" style='width:40.6%;height:50px;background: #ec612a;color:#fff !important;display:flex;flex-direction:column;justify-content:center;border-radius:0;margin:0;float:left;'>
-            <view class=" fl_l" bindtap="setModalStatus" data-status="1" data-type="canjiapintuan" style='font-size:14px;'>
-              参加拼团 ¥{{itemData.price11}}
-            </view>
-          </button>
-        </form>
 
       </view>
     </view>
@@ -321,12 +232,6 @@
           </view>
         </view>
 
-        <view class="df_1 l_h15 pt5 bre">
-          <button bindtap="set_share" data-status="1" style='line-height:100%;background-color:#fff;border:0;border-radius:0px;padding:0;'>
-            <image class="icon_kf" style='width:25px;height:25px;' src="/images/f.png"></image>
-            <view class="dbtext">分享</view>
-          </button>
-        </view>
 
       </view>
       <view class="fl_l w60">
@@ -344,44 +249,6 @@
   </view>
 
   <!-- 弹窗 -->
-  <view class="drawer_screen" bindtap="set_share" data-index="0" data-status="0" wx:if="{{show_share}}"></view>
-  <view animation="{{animationData}}" class="drawer_attr_share" catchtouchmove="preventTouchMove" wx:if="{{show_share}}">
-    <view class='myyhq'> </view>
-    <view class='share_top'>
-      分享
-      <view class='close_share' bindtap="set_share" data-index="0" data-status="0">x</view>
-    </view>
-    <view class='fx_box'>
-
-      <view wx:if="{{share.friends}}" class='fx_img_box'>
-        <button open-type="share" hover-class="button-hover" style='line-height:normal;border:0;border-radius:0px;padding:0;font-size:12px;'>
-          <view>
-            <image class='fx_img' src='/images/wx.png'></image>
-          </view>
-          <view>微信好友</view>
-        </button>
-      </view>
-      <view wx:if="{{share.friend}}" class='fx_img_box' bindtap='user_share'>
-        <view>
-          <image class='fx_img' src='/images/pyq.png'></image>
-        </view>
-        <view>二维码</view>
-      </view>
-    </view>
-
-  </view>
-
-  <view class='imagePathBox' hidden="{{maskHidden == false}}">
-    <view class='images_bg'>
-      <view class='share_top'>
-        查看二维码
-        <view class='close_share' bindtap='close_share'>x</view>
-      </view>
-      <image src="{{imagePath}}" data-src="{{imagePath}}" catchtap="previewImage" class='shengcheng'></image>
-      <button class='baocun' style='background:#FF6347;' bindtap='baocun'>保存相册</button>
-      <view class='share_bottom'>保存图片到手机后，您可到朋友圈分享该商品图片</view>
-    </view>
-  </view>
   <view hidden="{{maskHidden == false}}" class="mask"></view>
 
 </block>
