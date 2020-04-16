@@ -1,4 +1,5 @@
 <view class="body" wx:if="{{remind}}">
+
   <view class='zong'>
     <view class="spinner">
       <view class="spinner-container container1">
@@ -22,76 +23,45 @@
     </view>
   </view>
 </view>
+
 <!-- 加载页面结束 -->
 <block wx:else>
+  <navbar page-name="{{mch_name}}"></navbar>
   <view class="cont">
     <swiper style="height:375px" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
       <block wx:for="{{bannerItem}}" wx:key="{{item.id}}">
         <swiper-item>
-          <image src="{{item}}" class="slide-image" />
+          <image src="{{item.img}}" mode="widthFix" class="slide-image" />
           <text style='position:absolute;z-index:999;width:20px;bottom:0;right:19px;color:#ddd;'>{{index+1}}/{{bannerItem.length}}</text>
         </swiper-item>
       </block>
     </swiper>
     <view class='dd_details_box'>
       <view class='dd_details_jj'>
-
-        <view style='font-size:50rpx;color:#eb3737;margin:15rpx 0;' wx:if="{{earn}}">
-          <text class='fuhao'>¥</text> {{qj_price}}/
-          <text class='fuhao'>赚¥{{earn}}</text>
+      <view style='font-size:50rpx;color:#eb3737;margin:15rpx 0;'>
+          <text class='fuhao'>¥</text> {{product.price}}
         </view>
-
-        <view wx:else>
-          <view wx:if="{{type1 == 1}}">
-            ￥
-            <text style='font-size:40rpx;'>{{itemData.price11}}</text>
-            <view wx:if="{{is_zhekou == 1 && zhekou !='all' && zhekou}}" style='width:100px;height:19px;float:right;'>会员折扣：{{zhekou}} 折</view>
-          </view>
-          <block wx:else>
-            ￥
-            <text style='font-size:40rpx;'>{{qj_price}}</text>
-            <view wx:if="{{is_zhekou == 1 && zhekou !='all' && zhekou}}" style='width:100px;height:19px;float:right;'>会员折扣： {{zhekou}} 折</view>
-          </block>
-
+        <view>
           <view style='color:#666;font-size:25rpx;'>价格
-            <text style='text-decoration:line-through;'>￥{{qj_yprice}}</text>
+            <text style='text-decoration:line-through;'>￥{{product.oldPrice}}</text>
           </view>
         </view>
 
       </view>
       <view class='dd_details_text'>
-        <view class='ovh1' style='-webkit-line-clamp:2;float:left;font-size:32rpx;color:#333;font-weight:700;width:85%;'>
-          <text class='de_text' wx:if="{{itemData.xp == 1 || itemData.rexiao == 1 || itemData.tuijian == 1}}">[</text>
-          <text class='de_text' wx:if="{{itemData.xp == 1}}">新品</text>
-          <text class='de_text' wx:if="{{itemData.rexiao == 1}}">热销</text>
-          <text class='de_text' wx:if="{{itemData.tuijian == 1}}">推荐</text>
-          <text class='de_text' wx:if="{{itemData.xp == 1 || itemData.rexiao == 1 || itemData.tuijian == 1}}">]</text> {{itemData.name}}
+        <view class='ovh1' style='-webkit-line-clamp:2;float:left;font-size:32rpx;color:#333;font-weight:700;width:100%;'>
+          <text class='de_text' wx:if="{{product.isHot == 1}}">[</text>
+          <text class='de_text' wx:if="{{product.isHot == 1}}">热销</text>
+          <text class='de_text' wx:if="{{product.isHot == 1}}">]</text> {{product.mainTitle}}
         </view>
-        <view style='float:right;margin-top:-4px;'>
 
-          <view class="df_1 l_h15 pt5">
-            <view bindtap="addFavorites" class='{{wsc}}'>
-              <image class="icon_kf" src="/images/shc.png" style="width: 23px;height: 23px;margin-top: 6px;"></image>
-              <!-- <view class="dbtext">收藏</view> -->
-            </view>
-            <view bindtap="delFavorites" class='{{sc}}'>
-              <image class="icon_kf" src="/images/shced.png" style="width: 23px;height: 23px;margin-top: 6px;"></image>
-              <!-- <view class="dbtext">已收藏</view> -->
-            </view>
-          </view>
-        </view>
         <view style='clear:both;'></view>
       </view>
       <view class='kd_xl'>
-        <text class="c6 font_14" style='color:#ccc;margin-right:90px;'>快递：{{itemData.freight}}</text>
-        <text class="c6 font_14" style='color:#ccc'>销量：{{itemData.volume}}</text>
+        <text class="c6 font_14" style='color:#ccc'>销量：{{product.buyCount}}</text>
       </view>
     </view>
     <view style='clear:both;'></view>
-    <view class='qgx'></view>
-
-    <view class='qgx'></view>
-    <!-- 悬浮客服窗口 -->
   </view>
 
   <!--图文详情头部-->
@@ -99,19 +69,15 @@
     <view class="swiper-tab">
       <view class="bre swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">图文详情</view>
       <view class="bre swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">产品参数</view>
-      <view wx:if="{{type1 == 1}}" class="swiper-tab-list {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="swichNav">
-        <view data-current="2">抽奖规则</view>
-      </view>
-      <block wx:else>
-        <view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="swichNav">商品评价</view>
-      </block>
+      <view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="swichNav">商品评价</view>
+
     </view>
 
     <!-- 图文详情 -->
 
     <view hidden="{{!(currentTab==0)}}" style="margin-bottom:100rpx;min-height:500rpx;">
       <import src="../../wxParse/wxParse.wxml" />
-      <view class="wxParse" style='padding:1% 5% 3% 5%;height:100%;'>
+      <view class="wxParse" style='padding:4% 10% 10% 10%;height:100%;'>
         <template is="wxParse" data="{{wxParseData:content.nodes}}" />
       </view>
     </view>
@@ -120,26 +86,10 @@
 
     <view hidden="{{!(currentTab==1)}}" style="height:100%;margin-bottom:100rpx;min-height:500rpx;">
       <view class="p_all" style='padding:1% 5% 3% 5%;'>
-        <view class="canshu df">
-          <view class="name">商品名称：</view>
-          <view class="df_1 c3">{{itemData.name}}</view>
+        <view class="canshu df" wx:for="{{propertyValues}}" wx:key="{{item.id}}">
+          <view class="name">{{item.property.name}}:</view>
+          <view class="df_1 c3">{{item.value}}</view>
         </view>
-        <!-- <view class="canshu df">
-              <view class="name">品牌：</view>
-              <view class="df_1 c3">{{itemData.brand_name}}</view>
-            </view> -->
-        <view class="canshu df">
-          <view class="name">商品编号：</view>
-          <view class="df_1 c3">{{itemData.pro_number}}</view>
-        </view>
-        <view class="canshu df">
-          <view class="name">分类：</view>
-          <view class="df_1 c3">{{itemData.cat_name}}</view>
-        </view>
-        <!-- <view class="canshu df">
-              <view class="name">售后：</view>
-              <view class="df_1 c3">签收之日48小时内无条件退货</view>
-            </view> -->
       </view>
     </view>
 
@@ -155,10 +105,8 @@
         </view>
       </view>
       <view wx:else>
-        <view wx:if="{{type1 == 1}}">
-          <view>{{itemData.type01}}</view>
-        </view>
-        <block wx:else>
+  
+        <block>
           <!-- 用户评价 -->
           <view class="comment_box" wx:for="{{comments}}" wx:key="{{item.id}}">
             <view class="comment">
@@ -172,27 +120,6 @@
             <view class='comment_img'>
               <image wx:for="{{item.images}}" wx:for-item="url" src="{{url.url}}" data-src="{{url.url}}" catchtap="previewImage"></image>
             </view>
-            <view class='comment_pj'>
-              <text style="float: left;color: #666;">规格:{{item.size}}</text>
-              <view wx:if="{{item.CommentType == 'GOOD'}}">
-                <image src='/images/icon_good_select.png' class='comments_icon'></image>
-                <text>好评</text>
-              </view>
-              <view wx:if="{{item.CommentType == 'NOTBAD'}}">
-                <image src='/images/icon_middle_select.png' class='comments_icon'></image>
-                <text>中评</text>
-              </view>
-              <view wx:if="{{item.CommentType == 'BAD'}}">
-                <image src='/images/icon_bad_select.png' class='comments_icon'></image>
-                <text>差评</text>
-              </view>
-            </view>
-
-            <view class="tag" wx:if="{{item.reply.length > 1}}">
-              <view class='noe'></view>掌柜回复：{{item.reply}}
-            </view>
-
-
           </view>
         </block>
       </view>

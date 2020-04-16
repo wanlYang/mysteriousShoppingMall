@@ -1,6 +1,7 @@
 {
   "navigationBarTitleText": "商品详情",
   "usingComponents": {
-    "pop": "../logins/logins"
+    "pop": "../logins/logins",
+    "navbar": "../navbar/index"
   }
 }
