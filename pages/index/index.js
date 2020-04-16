@@ -18,6 +18,7 @@ Page({
     scrollLeft: 0, //tab标题的滚动条位置
     current: 0, //当前选中的Tab项
     allList:[],
+    notmore:false,
     current1: 0,
     page: 1,
     index: 1,
@@ -80,9 +81,9 @@ Page({
     var page = that.data.page;
     var index = that.data.tabid;
     var current = that.data.current;
-    console.log(page+"."+index);
+    console.log(page+"."+index+"."+current);
     wx.request({
-      url: app.d.ceshiUrl + '&action=Index&m=get_more',
+      url: app.d.ceshiUrl + '/applet/getmore',
       method: 'post',
       data: {
         page: page,
@@ -92,13 +93,19 @@ Page({
         'Content-Type': 'application/x-www-form-urlencoded'
       },
       success: function(res) {
-        var prolist = res.data.prolist;
+        var prolist = res.data.data;
         wx.hideNavigationBarLoading() //完成停止加载
         wx.stopPullDownRefresh() //停止下拉刷新
         that.setData({
           loading: false,
         });
         if (prolist == '' || res.data.status == 0) {
+       
+          that.setData({
+            notmore: true,
+            
+          });
+
           return false;
         } else {
           var allList = that.data.allList;
@@ -144,8 +151,6 @@ Page({
 
           var banner_num = Object.keys(that.data.banner); // 轮播图
           var notice = [{url: "1", title: "玄煞古风"}];
-        
-          
           var allList = res.data.data
           var indexTwoData = allList[0].products;
           that.setData({
@@ -155,7 +160,6 @@ Page({
           that.setData({
             inforList: notice,
             banner_num: banner_num,
-
             mch_name: app.globalData.title,
             logo: res.data.logo,
           });
@@ -238,12 +242,16 @@ Page({
   contentChange: function(e) {
     var that = this;
     var id = e.detail.current;
+   
     var tabid = that.data.allList[id].id;
+    console.log(tabid)
     this.setData({
       current: id,
       tabid: tabid,
+      notmore:false,
       page: 1,
     })
+    this.loadProductDetail();
     this.checkCor();
   },
   onShow: function() {

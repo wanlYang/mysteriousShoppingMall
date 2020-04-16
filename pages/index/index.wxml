@@ -39,7 +39,7 @@
       </scroll-view>
     </view>
     <!-- 内容区域 -->
-    <swiper class='out' current='{{current}}' autoplay="{{false}}" bindchange="contentChange">
+    <swiper class='out' current='{{current}}' autoplay="{{false}}" style="touch-action: none; " bindchange="contentChange">
       <swiper-item wx:for="{{allList}}" wx:for-item="item" wx:key="{{item.id}}">
         <scroll-view scroll-y="true" bindscrolltolower="obm">
           <!-- /首页轮播图/ -->
@@ -83,9 +83,9 @@
                  
                 </block>
               </view>
-              <view wx:else class="kdd_box">
+              <!-- <view wx:else class="kdd_box">
                 <image class="kdd" src="/images/kdd.png" mode="widthFix"></image>
-              </view>
+              </view> -->
           </view>
           <view style="display: flex;" wx:if="{{loading}}">
             <view class="spinner" style='margin:20px auto;'>
@@ -110,22 +110,16 @@
             </view>
           </view>
 
-          <view wx:if="{{item.twodata == ''}}" class='tishi'>
+          <view wx:if="{{notmore}}" class='tishi'>
             <view>
               <image class='scimg' style="margin-top: 25%;" src='/images/search_no.png'></image>
             </view>
-            <view style='font-size:13px;color:#666;'>没有更多数据了</view>
+            <view style='font-size:13px;color:#666;margin-bottom: 20px;'>没有更多数据了</view>
           </view>
         </scroll-view>
       </swiper-item>
     </swiper>
 
   </block>
-</view>
-<!--模态弹窗-->
-<view class="mask" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
-<view class="modalDlg" wx:if="{{showModal && sign_status == 1}}">
-  <image src="{{sign_image}}" bindtap="navigate_sign" mode="aspectFit" style="width:700rpx;" />
-  <icon type="cancel" size="35" color="orange" catchtap="go" class="close" />
 </view>
 <pop id="pop"></pop>

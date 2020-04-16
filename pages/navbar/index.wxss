@@ -40,8 +40,8 @@
   left: 10px;
   z-index: 11;
   line-height: 1;
-  padding-top: 4px;
-  padding-bottom: 4px;
+  padding-top: 2px;
+  padding-bottom: 2px;
 }
 
 .navbar-action-group {
