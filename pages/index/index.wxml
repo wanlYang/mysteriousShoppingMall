@@ -67,7 +67,7 @@
           </view>
           <!-- 滚动公告条结束 -->
           <!-- 商品信息 -->
-          <view class="cont">   
+          <view class="cont" style="{{item.id == 0 ? 'padding-top: 10rpx;':'padding-top: 25rpx;'}}">   
               <view class="twos_cont" wx:if="{{item.products.length !== 0}}">
                 <block wx:for="{{item.products}}" wx:for-item="product" wx:key="id">
                 <view class="product_box_in" >

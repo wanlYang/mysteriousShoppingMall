@@ -35,6 +35,7 @@ Page({
   },
   //下拉事件
   onPullDownRefresh: function() {
+   
     wx.showNavigationBarLoading() //在标题栏中显示加载
     this.onLoad();
     wx.hideNavigationBarLoading() //完成停止加载
@@ -118,6 +119,7 @@ Page({
             indexTwoData: indexTwoData
           });
         }
+       
       },
       fail: function(e) {
         wx.showToast({
@@ -182,7 +184,11 @@ Page({
     that.setData({
       loading: true,
     });
+    wx.showLoading({
+      title: '玩命加载中',
+    })
     that.getMore();
+    wx.hideLoading();
   },
   obm: function() {
     var that = this;

@@ -1,4 +1,5 @@
 {
+  "enablePullDownRefresh": true,
   "pages": [
     "pages/index/index",
     "pages/search/search",
