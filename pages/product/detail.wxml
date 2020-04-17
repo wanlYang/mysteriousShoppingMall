@@ -28,10 +28,10 @@
 <block wx:else>
   <navbar page-name="{{mch_name}}"></navbar>
   <view class="cont">
-    <swiper style="height:375px" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+    <swiper style="height:{{height}}px;" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
       <block wx:for="{{bannerItem}}" wx:key="{{item.id}}">
         <swiper-item>
-          <image src="{{item.img}}" mode="widthFix" class="slide-image" />
+          <image src="{{item.img}}" mode="widthFix"  bindload='setContainerHeight' class="slide-image auto-img" />
           <!-- <text style='position:absolute;z-index:999;width:20px;bottom:0;right:19px;color:#ddd;'>{{index+1}}/{{bannerItem.length}}</text> -->
         </swiper-item>
       </block>
