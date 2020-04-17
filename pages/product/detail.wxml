@@ -150,26 +150,26 @@
           </view>
         </view>
 
-        <view class="df_1 l_h15 pt5 bre">
+        <!-- <view class="df_1 l_h15 pt5 bre">
           <view class="go_cart" bindtap="go_cart">
             <image class="icon_kf" style='width:25px;height:25px;' src="/images/icons/cart.png"></image>
             <view class="dbtext">购物车</view>
             <view class="bg" wx:if="{{cart> 0}}">{{cart}}</view>
 
           </view>
-        </view>
+        </view> -->
 
 
       </view>
       <view class="fl_l w60">
-        <form bindsubmit="add_fromid" report-submit='true'>
+        <!-- <form bindsubmit="add_fromid" report-submit='true'>
           <button class="w50 fl_l white" style="background: #f7c747;font-size: 15px;line-height: 50px;color: #fff;padding:0;" form-type="submit" type="default" data-type="addcart" data-status="1">加入购物车</button>
 
           <button  wx:if="{{cart==0}}" class="w50 fl_l white" style="background: #ec612a;padding:0;font-size: 15px;line-height: 50px;color: #fff;" form-type="submit" type="default" data-type="buynow" data-status="1">立刻购买</button>
 
           <button  wx:if="{{cart>0}}" class="w50 fl_l white" style="background: #ec612a;padding:0;font-size: 15px;line-height: 50px;color: #fff;" bindtap="Settlement" >购物车结算</button>
 
-        </form>
+        </form> -->
 
       </view>
     </block>

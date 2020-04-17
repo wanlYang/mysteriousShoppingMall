@@ -17,7 +17,6 @@ App({
 
   },
   globalData: {
-   
     userInfo: {},
     userlogin: wx.getStorageSync('userlogin'),
   },
