@@ -124,6 +124,7 @@ Page({
       fail: function(e) {
         wx.showToast({
           title: '网络异常！',
+          icon:'none',
           duration: 2000
         });
       }
@@ -172,6 +173,7 @@ Page({
         fail: function(e) {
           wx.showToast({
             title: '网络异常！',
+            icon:'none',
             duration: 2000
           });
         },

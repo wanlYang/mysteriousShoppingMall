@@ -23,7 +23,9 @@ Page({
     interval: 5000,
     duration: 1000,
     product:null,
-    propertyValues:null
+    propertyValues:null,
+    ceshiUrl:app.d.ceshiUrl,
+    reviews:null
   },
   //页面加载完成函数
   onReady: function () {
@@ -80,7 +82,8 @@ Page({
             that.setData({
               bannerItem:res.data.data.product.productSingleImages,
               product:res.data.data.product,
-              propertyValues:res.data.data.propertyValues
+              propertyValues:res.data.data.propertyValues,
+              reviews:res.data.data.reviews
             });
             that.setData({
               remind: false
